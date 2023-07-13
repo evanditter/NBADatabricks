@@ -7,8 +7,8 @@
 
 # COMMAND ----------
 
-# %fs
-# ls FileStore/tables/Kaggle-datasets
+# MAGIC %fs
+# MAGIC ls FileStore/tables/Kaggle-datasets
 
 # COMMAND ----------
 
@@ -29,7 +29,7 @@
 
 # This cell reads in a manually uploaded kaggle.json file which contains a authentication key for the editter Kaggle account
 
-df1 = spark.read.format("json").load("dbfs:/FileStore/tables/Kaggle-datasets/kaggle.json")
+df1 = spark.read.format("json").load("dbfs:/FileStore/tables/Kaggle-datasets/kaggle1.json")
 KAGGLE_USERNAME = df1.select(df1.username).collect()[0][0]
 KAGGLE_KEY = df1.select(df1.key).collect()[0][0]
 

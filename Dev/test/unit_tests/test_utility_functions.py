@@ -1,25 +1,4 @@
 # Databricks notebook source
-# %pip install pytest
-
-# COMMAND ----------
-
-# %sql
-# select 
-#   *
-# from player_stats
-# where total_rebounds < 0 or assists < 0 or points < 0 or turnovers < 0 or blocks < 0 or steals < 0 or personal_fouls < 0 
-# or offensive_rebounds < 0 or defensive_rebounds < 0 or personal_fouls_per_game < 0 or turnovers_per_game < 0 or blocks_per_game < 0 or assists_per_game < 0 or steals_per_game < 0 or total_rebounds_per_game < 0 or defensive_rebounds_per_game < 0 or offensive_rebounds_per_game < 0 or points_per_game < 0 or free_throw_pct < 0 or free_throws_attempted < 0 or free_throws < 0 or effective_field_goal_pct < 0 or two_point_pct < 0 or two_pointers_attempted < 0 or two_pointers < 0 or three_point_pct < 0 or three_pointers < 0 or three_pointers_attempted < 0 or field_goal_pct < 0 or field_goals < 0 or field_goals_attempted < 0 or minutes_played < 0 or games_played < 0 or games_started < 0 or age < 17 or age > 50
-
-# COMMAND ----------
-
-# player_stats_df = spark.read.table("player_stats")
-
-# COMMAND ----------
-
-# player_stats_df.show(3)
-
-# COMMAND ----------
-
 # MAGIC %run ../../curated/utility_functions
 
 # COMMAND ----------

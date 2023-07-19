@@ -21,7 +21,7 @@ jobs:
         with:
           databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
 
-          local-notebook-path: notebooks/run_unit_tests.py
+          local-notebook-path: Dev/test/unit_tests/test_utility_functions.py
 
           existing-cluster-id: ${{ secrets.DATABRICKS_EXISTING_CLUSTER_ID }}
 

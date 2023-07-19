@@ -16,12 +16,12 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Run test notebook
+      - name: Run Utility Functions test notebook
         uses: databricks/run-notebook@main
         with:
           databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
 
-          local-notebook-path: Dev/test/unit_tests/test_utility_functions.py
+          local-notebook-path: src/test/unit_tests/test_utility_functions.py
 
           existing-cluster-id: ${{ secrets.DATABRICKS_EXISTING_CLUSTER_ID }}
 
@@ -44,4 +44,34 @@ jobs:
                 "permission_level": "CAN_VIEW"
               }
             ]
-          run-name: "EDA transforms helper module unit tests"
+          run-name: "EDA transforms helper module utility functions unit tests"
+
+      - name: Run Silver Tables Tests
+        uses: databricks/run-notebook@main
+        with:
+          databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
+
+          local-notebook-path: src/test/unit_tests/test_silver_database.py
+
+          existing-cluster-id: ${{ secrets.DATABRICKS_EXISTING_CLUSTER_ID }}
+
+          git-commit: "${{ github.event.pull_request.head.sha }}"
+
+          # Grant all users view permission on the notebook's results, so that they can
+          # see the result of the notebook, if they have related access permissions.
+          access-control-list-json: >
+            [
+              {
+                "group_name": "users",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "test-group",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "account users",
+                "permission_level": "CAN_VIEW"
+              }
+            ]
+          run-name: "EDA transforms helper module silver database unit tests"

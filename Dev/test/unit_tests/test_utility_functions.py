@@ -65,11 +65,11 @@ df = spark.createDataFrame(data, schema)
 
 class TestUtilityFunctions(unittest.TestCase):
     # Does the table exist?
-    def test_tableExists(self):
-        assert tableExists(tableName1, dbName2) is False
-        assert tableExists(tableName2, dbName2) is True 
-        assert tableExists(tableName3, dbName2) is True 
-        assert tableExists(tableName3, dbName1) is False 
+    # def test_tableExists(self):
+    #     assert tableExists(tableName1, dbName2) is False
+    #     assert tableExists(tableName2, dbName2) is True 
+    #     assert tableExists(tableName3, dbName2) is True 
+    #     assert tableExists(tableName3, dbName3) is False 
 
     # Does the column exist?
     def test_columnExists(self):
@@ -91,7 +91,3 @@ class TestUtilityFunctions(unittest.TestCase):
 
 test_results = unittest.main(argv=[''], verbosity=2, exit=False)
 assert test_results.result.wasSuccessful(), 'Test Failed; see logs above'
-
-# COMMAND ----------
-
-

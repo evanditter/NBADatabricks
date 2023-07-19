@@ -1,0 +1,49 @@
+name: Run PROD deployment on push to main
+
+on:
+  push:
+    branch:
+      - main
+
+env:
+  # Replace this value with your workspace instance name.
+  DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST_URL }}
+
+jobs:
+  run-production-model:
+    runs-on: ubuntu-latest
+    environment: prod
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run test notebook
+        uses: databricks/run-notebook@main
+        with:
+          databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
+
+          local-notebook-path: src/curated/deployment_model.py
+
+          existing-cluster-id: ${{ secrets.DATABRICKS_EXISTING_CLUSTER_ID }}
+
+          # git-commit: "${{ github.event.pull_request.head.sha }}"
+
+          # Grant all users view permission on the notebook's results, so that they can
+          # see the result of the notebook, if they have related access permissions.
+          access-control-list-json: >
+            [
+              {
+                "group_name": "users",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "test-group",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "account users",
+                "permission_level": "CAN_VIEW"
+              }
+            ]
+          run-name: "EDA transforms helper module unit tests"

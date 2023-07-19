@@ -22,7 +22,7 @@ DESCRIBE EXTENDED raw.basketball_common_player_info_raw
 
 -- COMMAND ----------
 
-CREATE TABLE common_player_info
+CREATE OR REPLACE TABLE common_player_info
 (
   player_id int,
   first_name string,
@@ -61,7 +61,7 @@ CREATE TABLE common_player_info
 
 -- COMMAND ----------
 
-INSERT INTO common_player_info
+INSERT OVERWRITEOVERWRITE common_player_info
 SELECT 
   person_id player_id,
   first_name ,
@@ -122,7 +122,7 @@ and player like '%aron Gordon%'
 
 -- COMMAND ----------
 
-CREATE TABLE player_stats (
+CREATE OR REPLACE TABLE player_stats (
   player_name string,
   season int,
   position string,
@@ -166,7 +166,7 @@ CREATE TABLE player_stats (
 
 -- COMMAND ----------
 
-INSERT INTO player_stats
+INSERT OVERWRITE player_stats
 SELECT 
   Player as player_name,
   season,
@@ -235,7 +235,7 @@ limit 1000
 
 -- COMMAND ----------
 
-CREATE TABLE player_box_score_stats (
+CREATE OR REPLACE  TABLE player_box_score_stats (
   player_name string,
   season int,
   game_id int, 
@@ -273,7 +273,7 @@ CREATE TABLE player_box_score_stats (
 
 -- COMMAND ----------
 
-INSERT INTO player_box_score_stats
+INSERT OVERWRITE player_box_score_stats
 
 SELECT 
   player_name ,

@@ -29,8 +29,8 @@ select ps.player_name, c.birthdate, c.country, c.draft_round,d.draft_round as d_
    d.player_id as d_player_id, c.player_id, d.team_name, d.team_abbreviation, d.team_id
 
 from player_stats ps
-full outer join draft_history d on d.full_name = ps.player_name
-full outer join common_player_info c on c.player_id = d.player_id
+full outer join draft_history d on lower(d.full_name) = lower(ps.player_name)
+full outer join common_player_info c on lower(c.player_id) = lower(d.player_id)
 
 where ps.player_name like 'Paul George'
 limit 100
@@ -71,4 +71,40 @@ where player_name like '%Bojan%'
 
 -- COMMAND ----------
 
+select (lower('Bojan Bogdanović')) collate SQL_Latin1_General_CP1253_CI_AI
 
+-- COMMAND ----------
+
+select ps.player_id, c.player_id, ps.full_name, c.full_name , c.year_ended, c.year_started
+from common_player_info c
+LEFT JOIN draft_history ps on ps.player_id = c.player_id
+WHERE ps.player_id is null
+-- 1228 players exist in common_player_info that are not in draft_history
+
+-- COMMAND ----------
+
+select ps.player_id, c.player_id, ps.full_name, c.full_name 
+from draft_history c
+LEFT JOIN common_player_info ps on ps.player_id = c.player_id
+WHERE ps.player_id is null
+-- 5005 players exist in draft_history that don't match to common player info
+
+-- COMMAND ----------
+
+select *
+from draft_combine_stats
+where full_name like '%Naz%'
+
+-- COMMAND ----------
+
+select ps.player_id, c.player_id, ps.full_name, c.full_name 
+from draft_history c
+LEFT JOIN common_player_info ps on ps.player_id = c.player_id
+where c.player_id = 1629675
+-- undrafted player
+
+-- COMMAND ----------
+
+select *
+from common_player_info
+where player_id = 1629675

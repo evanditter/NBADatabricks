@@ -17,7 +17,7 @@ DESCRIBE EXTENDED raw.basketball_draft_combine_stats_Raw
 
 -- COMMAND ----------
 
-CREATE TABLE draft_combine_stats
+CREATE OR REPLACE  TABLE draft_combine_stats
 (
   season int,
   player_id int,
@@ -75,7 +75,7 @@ CREATE TABLE draft_combine_stats
 
 -- COMMAND ----------
 
-INSERT INTO draft_combine_stats
+INSERT OVERWRITEOVERWRITE draft_combine_stats
 SELECT 
   season ,
   player_id ,
@@ -153,7 +153,7 @@ limit 100
 
 -- COMMAND ----------
 
-CREATE TABLE draft_history (
+CREATE OR REPLACE  TABLE draft_history (
   player_id int,
   full_name string,
   draft_year int,
@@ -172,7 +172,7 @@ CREATE TABLE draft_history (
 
 -- COMMAND ----------
 
-INSERT INTO draft_history
+INSERT OVERWRITE draft_history
 SELECT 
   person_id as player_id,
   player_name as full_name,

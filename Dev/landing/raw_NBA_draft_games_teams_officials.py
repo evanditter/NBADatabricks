@@ -73,12 +73,21 @@ change_file_names_in_path('/FileStore/tables/Kaggle-datasets' + '/{}/'.format(ka
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC select * from raw.basketball_team_info_common_raw
+
+# COMMAND ----------
+
+# MAGIC %sql
 # MAGIC CREATE TABLE raw.basketball_team_details_raw
 # MAGIC USING CSV
 # MAGIC OPTIONS (
 # MAGIC   header = "true"
 # MAGIC )
 # MAGIC LOCATION '/FileStore/tables/Kaggle-datasets/basketball/team_details.csv'
+
+# COMMAND ----------
+
+dbutils.fs.ls('/FileStore/tables/Kaggle-datasets/basketball/')
 
 # COMMAND ----------
 
@@ -246,6 +255,21 @@ change_file_names_in_path('/FileStore/tables/Kaggle-datasets' + '/{}/'.format(ka
 # MAGIC   header = "true"
 # MAGIC )
 # MAGIC LOCATION '/FileStore/tables/Kaggle-datasets/basketball/common_player_info.csv'
+
+# COMMAND ----------
+
+# MAGIC %sql 
+# MAGIC CREATE TABLE raw.nba_team_win_raw
+# MAGIC USING CSV
+# MAGIC OPTIONS (
+# MAGIC   header = "true"
+# MAGIC )
+# MAGIC LOCATION '/FileStore/tables/Kaggle-datasets/basketball/nba_team_win.csv'
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from raw.nba_team_win_raw
 
 # COMMAND ----------
 

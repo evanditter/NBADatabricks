@@ -5,11 +5,12 @@ on:
 
 env:
   # Replace this value with your workspace instance name.
-  DATABRICKS_HOST: https://<your-workspace-instance-name>
+  DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST_URL }}
 
 jobs:
   unit-test-notebook:
     runs-on: ubuntu-latest
+    environment: dev
     timeout-minutes: 15
 
     steps:
@@ -18,11 +19,11 @@ jobs:
       - name: Run test notebook
         uses: databricks/run-notebook@main
         with:
-          databricks-token: <your-access-token>
+          databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
 
           local-notebook-path: notebooks/run_unit_tests.py
 
-          existing-cluster-id: <your-cluster-id>
+          existing-cluster-id: ${{ secrets.DATABRICKS_EXISTING_CLUSTER_ID }}
 
           git-commit: "${{ github.event.pull_request.head.sha }}"
 
@@ -32,6 +33,14 @@ jobs:
             [
               {
                 "group_name": "users",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "test-group",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "account users",
                 "permission_level": "CAN_VIEW"
               }
             ]

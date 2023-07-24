@@ -3,7 +3,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run /Repos/evan.ditter@inspire11.com/NBADatabricks/Dev/landing/raw_ConnectToKaggleAPI
+# MAGIC %run /Repos/evan.ditter@inspire11.com/NBADatabricks/src/landing/raw_ConnectToKaggleAPI
 
 # COMMAND ----------
 

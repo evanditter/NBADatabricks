@@ -33,3 +33,11 @@ print('test if on main it is pushed correctly')
 
 #important_stats.select()
 
+
+# COMMAND ----------
+
+print('one more test')
+
+# COMMAND ----------
+
+print('still part of test')

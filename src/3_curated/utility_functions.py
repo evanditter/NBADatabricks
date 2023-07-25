@@ -63,7 +63,3 @@ def numRowsInColumnForValue(dataFrame, columnName, columnValue):
   df = dataFrame.filter(col(columnName) == columnValue)
 
   return df.count()
-
-# COMMAND ----------
-
-

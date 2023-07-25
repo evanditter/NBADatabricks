@@ -284,7 +284,3 @@ dbutils.fs.ls('/FileStore/tables/Kaggle-datasets/basketball/')
 # MAGIC select *
 # MAGIC from raw.basketball_player_raw
 # MAGIC limit 100
-
-# COMMAND ----------
-
-

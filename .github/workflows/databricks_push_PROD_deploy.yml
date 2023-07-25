@@ -2,8 +2,8 @@ name: Run PROD deployment on push to main
 
 on:
   push:
-    branch:
-      - main
+    branches:
+      - 'main'
 
 env:
   # Replace this value with your workspace instance name.

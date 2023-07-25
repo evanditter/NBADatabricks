@@ -44,7 +44,7 @@ jobs:
                 "permission_level": "CAN_VIEW"
               }
             ]
-          run-name: "EDA transforms helper module utility functions unit tests"
+          run-name: "Testing with utility functions unit tests"
 
       - name: Run Silver Tables Tests
         uses: databricks/run-notebook@main
@@ -74,4 +74,34 @@ jobs:
                 "permission_level": "CAN_VIEW"
               }
             ]
-          run-name: "EDA transforms helper module silver database unit tests"
+          run-name: "Testing with silver database unit tests"
+
+      - name: Run Regression Tests
+        uses: databricks/run-notebook@main
+        with:
+          databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
+
+          local-notebook-path: src/test/regression_tests/regression_all_unit_tests.py
+
+          existing-cluster-id: ${{ secrets.DATABRICKS_EXISTING_CLUSTER_ID }}
+
+          git-commit: "${{ github.event.pull_request.head.sha }}"
+
+          # Grant all users view permission on the notebook's results, so that they can
+          # see the result of the notebook, if they have related access permissions.
+          access-control-list-json: >
+            [
+              {
+                "group_name": "users",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "test-group",
+                "permission_level": "CAN_VIEW"
+              }, 
+              {
+                "group_name": "account users",
+                "permission_level": "CAN_VIEW"
+              }
+            ]
+          run-name: "Testing with regression tests"

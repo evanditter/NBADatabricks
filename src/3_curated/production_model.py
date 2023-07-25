@@ -16,6 +16,10 @@ display(important_stats.head(5))
 
 # COMMAND ----------
 
+print('test if on main it is pushed correctly')
+
+# COMMAND ----------
+
 #100
 # points - 30
 # assists - 15

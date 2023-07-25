@@ -23,7 +23,7 @@ jobs:
         with:
           databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
 
-          local-notebook-path: src/curated/deployment_model.py
+          local-notebook-path: src/curated/production_model.py
 
           existing-cluster-id: ${{ secrets.DATABRICKS_EXISTING_CLUSTER_ID }}
 
@@ -47,3 +47,4 @@ jobs:
               }
             ]
           run-name: "Run PROD deployment on push to main"
+

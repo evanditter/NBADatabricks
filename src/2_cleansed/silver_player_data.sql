@@ -325,7 +325,3 @@ select *
 from player_box_score_stats
 where game_date >= '2021-01-01'
 limit 1000
-
--- COMMAND ----------
-
-

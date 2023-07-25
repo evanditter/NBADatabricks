@@ -158,7 +158,3 @@ change_file_names_in_path('/FileStore/tables/Kaggle-datasets' + '/{}/'.format(ka
 
 # MAGIC %sql
 # MAGIC DESCRIBE EXTENDED raw.nba_player_stats_raw
-
-# COMMAND ----------
-
-

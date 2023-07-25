@@ -200,7 +200,3 @@ from draft_history
 
 select * 
 from draft_combine_stats
-
--- COMMAND ----------
-
-

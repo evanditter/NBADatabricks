@@ -42,7 +42,3 @@ class TestImportFunctions(unittest.TestCase):
 test_results = unittest.main(argv=[''], verbosity=2, exit=False)
 assert test_results.result.wasSuccessful(), 'Test Failed; see logs above'
 
-
-# COMMAND ----------
-
-

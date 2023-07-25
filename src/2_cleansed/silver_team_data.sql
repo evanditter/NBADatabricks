@@ -115,7 +115,3 @@ FROM raw.nba_team_win_raw
 -- COMMAND ----------
 
 DESCRIBE EXTENDED common_player_info
-
--- COMMAND ----------
-
-

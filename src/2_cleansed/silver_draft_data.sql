@@ -75,7 +75,7 @@ CREATE OR REPLACE  TABLE draft_combine_stats
 
 -- COMMAND ----------
 
-INSERT OVERWRITEOVERWRITE draft_combine_stats
+INSERT OVERWRITE draft_combine_stats
 SELECT 
   season ,
   player_id ,

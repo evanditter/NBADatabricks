@@ -7,13 +7,13 @@
 
 # COMMAND ----------
 
-# MAGIC %fs
-# MAGIC ls FileStore/tables/Kaggle-datasets
+#%fs
+#ls FileStore/tables/Kaggle-datasets
 
 # COMMAND ----------
 
-# MAGIC %fs
-# MAGIC ls FileStore/tables/
+#%fs
+#ls FileStore/tables/
 
 # COMMAND ----------
 
@@ -29,7 +29,7 @@
 
 # This cell reads in a manually uploaded kaggle.json file which contains a authentication key for the editter Kaggle account
 
-df1 = spark.read.format("json").load("dbfs:/FileStore/tables/Kaggle-datasets/kaggle1.json")
+df1 = spark.read.format("json").load("dbfs:/FileStore/tables/Kaggle-datasets/kaggle.json")
 KAGGLE_USERNAME = df1.select(df1.username).collect()[0][0]
 KAGGLE_KEY = df1.select(df1.key).collect()[0][0]
 
@@ -39,8 +39,8 @@ KAGGLE_KEY = df1.select(df1.key).collect()[0][0]
 
 # This cell is commented out but contains the information from the manually uploaded kaggle file
 
-# print(KAGGLE_KEY)
-# print(KAGGLE_USERNAME)
+print(KAGGLE_KEY)
+print(KAGGLE_USERNAME)
 
 # COMMAND ----------
 
@@ -105,4 +105,5 @@ def change_file_names_in_path(path):
 
 # COMMAND ----------
 
-
+# test = authenticate_kaggle(KAGGLE_USERNAME, KAGGLE_KEY)
+# print(test.dataset_list(search="covid") )

@@ -61,7 +61,7 @@ CREATE OR REPLACE TABLE common_player_info
 
 -- COMMAND ----------
 
-INSERT OVERWRITEOVERWRITE common_player_info
+INSERT OVERWRITE common_player_info
 SELECT 
   person_id player_id,
   first_name ,

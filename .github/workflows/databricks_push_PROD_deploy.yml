@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run test notebook
-        uses: databricks/run-notebook@main
+        uses: databricks/run-notebook@master
         with:
           databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
 
@@ -47,5 +47,5 @@ jobs:
                 "permission_level": "CAN_VIEW"
               }
             ]
-          run-name: "Run PROD deployment on push to main"
+          run-name: "Run PROD deployment on push to master"
 

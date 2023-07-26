@@ -1,9 +1,13 @@
 -- Databricks notebook source
-CREATE SCHEMA analytics
+-- CREATE SCHEMA NBA.analytics
 
 -- COMMAND ----------
 
-SHOW TABLES
+USE CATALOG NBA
+
+-- COMMAND ----------
+
+SHOW TABLES in NBA.analytics
 
 -- COMMAND ----------
 
@@ -106,5 +110,5 @@ where c.player_id = 1629675
 -- COMMAND ----------
 
 select *
-from common_player_info
+from NBA.default.common_player_info
 where player_id = 1629675

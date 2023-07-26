@@ -4,20 +4,33 @@
 
 -- COMMAND ----------
 
-SHOW TABLES in raw
+-- MAGIC %sql
+-- MAGIC USE CATALOG NBA
+
+-- COMMAND ----------
+
+SHOW TABLES in NBA.raw
 
 -- COMMAND ----------
 
 select *
-from raw.basketball_draft_combine_stats_Raw
+from NBA.raw.basketball_draft_combine_stats_Raw
 
 -- COMMAND ----------
 
-DESCRIBE EXTENDED raw.basketball_draft_combine_stats_Raw
+DESCRIBE EXTENDED NBA.raw.basketball_draft_combine_stats_Raw
 
 -- COMMAND ----------
 
-CREATE OR REPLACE  TABLE draft_combine_stats
+-- DROP SCHEMA NBA.silver
+
+-- COMMAND ----------
+
+-- CREATE SCHEMA NBA.analytics
+
+-- COMMAND ----------
+
+CREATE OR REPLACE  TABLE NBA.default.draft_combine_stats
 (
   season int,
   player_id int,
@@ -75,7 +88,7 @@ CREATE OR REPLACE  TABLE draft_combine_stats
 
 -- COMMAND ----------
 
-INSERT OVERWRITE draft_combine_stats
+INSERT OVERWRITE NBA.default.draft_combine_stats
 SELECT 
   season ,
   player_id ,
@@ -133,7 +146,7 @@ SELECT
   SUBSTRING_INDEX(on_move_fifteen, '-', 1) / SUBSTRING_INDEX(on_move_fifteen, '-', -1)  as on_move_fifteen_pct,
   SUBSTRING_INDEX(on_move_college, '-', 1) / SUBSTRING_INDEX(on_move_college, '-', -1)  as on_move_college_pct
 
-FROM raw.basketball_draft_combine_stats_Raw
+FROM NBA.raw.basketball_draft_combine_stats_Raw
 
 -- COMMAND ----------
 
@@ -153,7 +166,7 @@ limit 100
 
 -- COMMAND ----------
 
-CREATE OR REPLACE  TABLE draft_history (
+CREATE OR REPLACE  TABLE NBA.default.draft_history (
   player_id int,
   full_name string,
   draft_year int,
@@ -172,7 +185,7 @@ CREATE OR REPLACE  TABLE draft_history (
 
 -- COMMAND ----------
 
-INSERT OVERWRITE draft_history
+INSERT OVERWRITE NBA.default.draft_history
 SELECT 
   person_id as player_id,
   player_name as full_name,
@@ -189,7 +202,7 @@ SELECT
   organization_type as last_affiliation_type,
   player_profile_flag
 
-FROM raw.basketball_draft_history_raw
+FROM NBA.raw.basketball_draft_history_raw
 
 -- COMMAND ----------
 

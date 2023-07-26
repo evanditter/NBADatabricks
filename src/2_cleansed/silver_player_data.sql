@@ -4,7 +4,12 @@
 
 -- COMMAND ----------
 
-SHOW TABLES in raw
+-- MAGIC %sql
+-- MAGIC USE CATALOG NBA
+
+-- COMMAND ----------
+
+SHOW TABLES in NBA.raw
 
 -- COMMAND ----------
 
@@ -22,7 +27,7 @@ DESCRIBE EXTENDED raw.basketball_common_player_info_raw
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE common_player_info
+CREATE OR REPLACE TABLE NBA.default.common_player_info
 (
   player_id int,
   first_name string,
@@ -61,7 +66,7 @@ CREATE OR REPLACE TABLE common_player_info
 
 -- COMMAND ----------
 
-INSERT OVERWRITE common_player_info
+INSERT OVERWRITE NBA.default.common_player_info
 SELECT 
   person_id player_id,
   first_name ,
@@ -96,12 +101,12 @@ SELECT
   cast(draft_round as int) draft_round,
   cast(draft_number as int) pick_number,
   case when greatest_75_flag = 'N' then 0 else 1 end as top_75_player
-FROM raw.basketball_common_player_info_raw
+FROM NBA.raw.basketball_common_player_info_raw
 
 -- COMMAND ----------
 
 select *
-from common_player_info
+from NBA.default.common_player_info
 limit 100
 
 -- COMMAND ----------
@@ -112,7 +117,7 @@ limit 100
 -- COMMAND ----------
 
 select *
-from raw.nba_player_stats_raw
+from NBA.raw.nba_player_stats_raw
 where season = 2022
 and player like '%aron Gordon%'
 
@@ -122,7 +127,7 @@ and player like '%aron Gordon%'
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE player_stats (
+CREATE OR REPLACE TABLE NBA.default.player_stats (
   player_name string,
   season int,
   position string,
@@ -166,7 +171,7 @@ CREATE OR REPLACE TABLE player_stats (
 
 -- COMMAND ----------
 
-INSERT OVERWRITE player_stats
+-- INSERT OVERWRITE player_stats
 SELECT 
   Player as player_name,
   season,
@@ -208,12 +213,14 @@ SELECT
   CAST(`TOV` as double) as turnovers ,
   PF as personal_fouls 
 
-FROM raw.nba_player_stats_raw
+FROM NBA.raw.nba_player_stats_raw
+
+where player like '%aron Gordon%'
 
 -- COMMAND ----------
 
 select *
-from player_stats 
+from NBA.default.player_stats 
 limit 100
 
 -- COMMAND ----------
@@ -225,7 +232,7 @@ limit 100
 
 -- usefull for gettting all of a players games across his career.
 select *
-from raw.nba_player_box_score_stats_raw
+from NBA.raw.nba_player_box_score_stats_raw
 where plus_minus is not null 
 limit 1000
 
@@ -235,7 +242,7 @@ limit 1000
 
 -- COMMAND ----------
 
-CREATE OR REPLACE  TABLE player_box_score_stats (
+CREATE OR REPLACE  TABLE NBA.default.player_box_score_stats (
   player_name string,
   season int,
   game_id int, 
@@ -273,7 +280,7 @@ CREATE OR REPLACE  TABLE player_box_score_stats (
 
 -- COMMAND ----------
 
-INSERT OVERWRITE player_box_score_stats
+INSERT OVERWRITE NBA.default.player_box_score_stats
 
 SELECT 
   player_name ,
@@ -317,11 +324,11 @@ SELECT
   PF as personal_fouls ,
   plus_minus 
 
-FROM raw.nba_player_box_score_stats_raw
+FROM NBA.raw.nba_player_box_score_stats_raw
 
 -- COMMAND ----------
 
 select *
-from player_box_score_stats
+from NBA.default.player_box_score_stats
 where game_date >= '2021-01-01'
 limit 1000

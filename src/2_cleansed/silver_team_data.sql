@@ -1,18 +1,18 @@
 -- Databricks notebook source
-show tables in raw
+USE CATALOG NBA
 
 -- COMMAND ----------
 
-describe extended raw.basketball_team_raw
+describe extended NBA.raw.basketball_team_raw
 
 -- COMMAND ----------
 
 select *
-from raw.basketball_team_raw
+from NBA.raw.basketball_team_raw
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE basketball_teams (
+CREATE OR REPLACE TABLE NBA.default.basketball_teams (
   team_id int,
   team_name string,
   team_abbreviation string,
@@ -24,7 +24,7 @@ CREATE OR REPLACE TABLE basketball_teams (
 
 -- COMMAND ----------
 
-INSERT OVERWRITE basketball_teams
+INSERT OVERWRITE NBA.default.basketball_teams
 
 select 
   id as team_id,
@@ -53,7 +53,7 @@ from raw.basketball_team_history_raw
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE basketball_teams_history
+CREATE OR REPLACE TABLE NBA.default.basketball_teams_history
 (
   team_id int,
   team_city string,
@@ -65,7 +65,7 @@ CREATE OR REPLACE TABLE basketball_teams_history
 
 -- COMMAND ----------
 
-INSERT OVERWRITE basketball_teams_history
+INSERT OVERWRITE NBA.default.basketball_teams_history
 
 SELECT 
   team_id ,
@@ -74,7 +74,7 @@ SELECT
   year_founded,
   year_active_till as year_active_until
 
-FROM raw.basketball_team_history_raw
+FROM NBA.raw.basketball_team_history_raw
 
 -- COMMAND ----------
 
@@ -91,7 +91,7 @@ describe extended raw.nba_team_win_raw
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE nba_team_win (
+CREATE OR REPLACE TABLE NBA.default.nba_team_win (
   season int,
   year string,
   team_nickname string,
@@ -101,7 +101,7 @@ CREATE OR REPLACE TABLE nba_team_win (
 
 -- COMMAND ----------
 
-INSERT OVERWRITE nba_team_win
+INSERT OVERWRITE NBA.default.nba_team_win
 
 SELECT 
   cast(SUBSTRING(year,1,4) as int) as season,
@@ -110,8 +110,8 @@ SELECT
   record,
   round(`win%` * 100,3) as winning_pct
 
-FROM raw.nba_team_win_raw
+FROM NBA.raw.nba_team_win_raw
 
 -- COMMAND ----------
 
-DESCRIBE EXTENDED common_player_info
+DESCRIBE EXTENDED NBA.default.common_player_info

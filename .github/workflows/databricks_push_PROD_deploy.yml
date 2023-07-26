@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run test notebook
-        uses: databricks/run-notebook@master
+        uses: databricks/run-notebook@main
         with:
           databricks-token: ${{ secrets.DATABRICKS_API_TOKEN }}
 

@@ -14,8 +14,7 @@ file_path = '/FileStore/tables/Kaggle-datasets/'
 # COMMAND ----------
 
 # DBTITLE 1,List contents of kaggle dataset directory
-# MAGIC %fs
-# MAGIC ls FileStore/tables/Kaggle-datasets/
+# dbutils.fs.lfs('/FileStore/tables/Kaggle-datasets/')
 
 # COMMAND ----------
 
@@ -41,8 +40,7 @@ print('Datasets Downloaded and exist in FileStore/tables/Kaggle-datasets' + '/{}
 # COMMAND ----------
 
 # DBTITLE 1,Show files in the Kaggle-datasets/nba-players-and-team-data directory
-# %fs
-# ls FileStore/tables/Kaggle-datasets/nba-players-and-team-data/
+# dbutils.fs.ls('/FileStore/tables/Kaggle-datasets/nba-players-and-team-data/')
 
 # COMMAND ----------
 
@@ -92,18 +90,7 @@ df.write.mode("overwrite").format("delta").saveAsTable('NBA.raw.NBA_Payroll_raw'
 
 # COMMAND ----------
 
-# DBTITLE 1,Create NBA Player Box Score Stats Raw
-# MAGIC %sql
-# MAGIC CREATE TABLE raw.NBA_Player_Box_Score_Stats_raw 
-# MAGIC USING CSV
-# MAGIC OPTIONS (
-# MAGIC   header = "true"
-# MAGIC )
-# MAGIC LOCATION '/FileStore/tables/Kaggle-datasets/nba-players-and-team-data/NBA_Player_Box_Score_Stats_1950___2022_.csv'
-# MAGIC
-
-# COMMAND ----------
-
+# DBTITLE 1,Create NBA Player Box Score Stats raw table
 # File location and type
 file_location = "/FileStore/tables/Kaggle-datasets/nba-players-and-team-data/NBA_Player_Box_Score_Stats_1950___2022_.csv"
 file_type = "csv"
@@ -136,17 +123,6 @@ df.write.mode("overwrite").format("delta").saveAsTable('NBA.raw.NBA_Player_Box_S
 # COMMAND ----------
 
 # DBTITLE 1,Create NBA Player Stats raw table
-# MAGIC %sql
-# MAGIC CREATE TABLE raw.NBA_Player_Stats_raw 
-# MAGIC USING CSV
-# MAGIC OPTIONS (
-# MAGIC   header = "true"
-# MAGIC )
-# MAGIC LOCATION '/FileStore/tables/Kaggle-datasets/nba-players-and-team-data/NBA_Player_Stats_1950___2022_.csv'
-# MAGIC
-
-# COMMAND ----------
-
 # File location and type
 file_location = "/FileStore/tables/Kaggle-datasets/nba-players-and-team-data/NBA_Player_Stats_1950___2022_.csv"
 file_type = "csv"
@@ -179,18 +155,6 @@ df.write.mode("overwrite").format("delta").option("delta.columnMapping.mode", "n
 # COMMAND ----------
 
 # DBTITLE 1,Create NBA Players Salaries Raw
-# MAGIC
-# MAGIC %sql
-# MAGIC CREATE TABLE raw.NBA_Player_Salaries_raw
-# MAGIC USING CSV
-# MAGIC OPTIONS (
-# MAGIC   header = "true"
-# MAGIC )
-# MAGIC LOCATION '/FileStore/tables/Kaggle-datasets/nba-players-and-team-data/NBA_Salaries_1990_2023_.csv'
-# MAGIC
-
-# COMMAND ----------
-
 # File location and type
 file_location = "/FileStore/tables/Kaggle-datasets/nba-players-and-team-data/NBA_Salaries_1990_2023_.csv"
 file_type = "csv"

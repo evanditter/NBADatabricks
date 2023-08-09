@@ -42,12 +42,6 @@ def players_total_stat(dataframe: StructType, player: StringType, stat: StringTy
 
 # COMMAND ----------
 
-# Does a table exist within a specified database?
-def tableExists(tableName, dbName):
-  return spark.catalog.tableExists(f"{dbName}.{tableName}")
-
-# COMMAND ----------
-
 # Does the specified column exist in the given DataFrame?
 def columnExists(dataFrame, columnName):
   if columnName in dataFrame.columns:
@@ -61,5 +55,4 @@ def columnExists(dataFrame, columnName):
 # in the given DataFrame?
 def numRowsInColumnForValue(dataFrame, columnName, columnValue):
   df = dataFrame.filter(col(columnName) == columnValue)
-
   return df.count()

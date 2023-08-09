@@ -22,14 +22,6 @@ DESCRIBE EXTENDED NBA.raw.basketball_draft_combine_stats_Raw
 
 -- COMMAND ----------
 
--- DROP SCHEMA NBA.silver
-
--- COMMAND ----------
-
--- CREATE SCHEMA NBA.analytics
-
--- COMMAND ----------
-
 CREATE OR REPLACE  TABLE NBA.default.draft_combine_stats
 (
   season int,

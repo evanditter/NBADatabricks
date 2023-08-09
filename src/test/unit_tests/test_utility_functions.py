@@ -43,12 +43,6 @@ data = [ ("Bruce Brown", "Nuggets", "DEN", 21.5, 41, 8.5, 9.1, 1.98, 691, 301 ),
 df = spark.createDataFrame(data, schema)
 
 class TestUtilityFunctions(unittest.TestCase):
-    # Does the table exist?
-    # def test_tableExists(self):
-    #     assert tableExists(tableName1, dbName2) is False
-    #     assert tableExists(tableName2, dbName2) is True 
-    #     assert tableExists(tableName3, dbName2) is True 
-    #     assert tableExists(tableName3, dbName3) is False 
 
     # Does the column exist?
     def test_columnExists(self):

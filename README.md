@@ -6,7 +6,7 @@ I wanted to be able to do exploratory analysis and apply simple machine learning
 Based on player statistics, I wanted to be able to predict what would make a good player based on their draft position as well as predict if a player would be a hall of famer based on the stats.
 
 ## Tech Stack
-I used Databricks hosted on AWS and using Github Actions to promote notebooks from dev to prod environments. 
+I used Databricks hosted on AWS and using Github Actions to promote notebooks from dev to qa to prod environments. 
 In Databricks, I created a medallion architecture - bronze, silver, and gold.
   - In the bronze layer there is raw data which is a collection of datasets from kaggle gathered using API calls to kaggle.
   - In the silver layer I cleansed the raw data by defining the schema desired, performing conversions / standardizations on the statistics, and casting values as needed.
